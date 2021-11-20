@@ -11,8 +11,7 @@ int enablePortClocking(GPIO_TypeDef *port);
 void configureSPIClockingPins(LCD_Clocking clockingData);
 void configureSPITransmissionPins(LCD_SPI clockingData);
 
-int initializeDisplay(LCD_Connection connection)
-{
+int initializeDisplay(LCD_Connection connection) {
 	if (configureGPIO(connection) == ERROR_CODE) {
 		return ERROR_CODE;
 	}
@@ -35,8 +34,7 @@ int initializeDisplay(LCD_Connection connection)
 	return OK;
 }
 
-int configureGPIO(LCD_Connection connection)
-{
+int configureGPIO(LCD_Connection connection) {
 	if (enableClocking(connection) == ERROR_CODE) {
 		return ERROR_CODE;
 	}
@@ -80,13 +78,18 @@ int enableClocking(LCD_Connection connection){
 int enablePortClocking(GPIO_TypeDef *port) {
 	if (port == GPIOA) {
 		__GPIOA_CLK_ENABLE();
-	} else if (port == GPIOB) {
+	} 
+	else if (port == GPIOB) {
 		__GPIOB_CLK_ENABLE();
-	} else if (port == GPIOC)
+	} 
+	else if (port == GPIOC) {
 		__GPIOC_CLK_ENABLE();
+	}
 	else if (port == GPIOD) {
 		__GPIOD_CLK_ENABLE();
-	} else return ERROR_CODE;
+	} 
+	else 
+		return ERROR_CODE;
 	
 	return OK;
 }
