@@ -4,24 +4,25 @@
 #include "LCD5110.h"
 #include "font.h"
 
+#define COMMAND_MODE 0
+#define PACKAGE_LENGTH 8
+#define FIRST_BIT_MASK 0x80
+
 void gotoPoint(LCD_Connection connection, unsigned char x,unsigned char y);
 void setXY(LCD_Connection connection, unsigned char x,unsigned char y);
 
 void writeByte(LCD_Connection connection, unsigned char data, unsigned char mode) {
-	unsigned char i;
 	resetCS(connection);
 
-	if (mode == DEFAULT_MODE) {
+	if (mode == COMMAND_MODE) {
 		resetDC(connection);
 	} 
 	else {
 		setDC(connection);
 	}
 
-	for (i = 0; i < 8; i++) {
-		unsigned char r = data & 0x80;
-		
-		if (r == 1) {
+	for (int i = 0; i < PACKAGE_LENGTH; i++) {
+		if (data & FIRST_BIT_MASK) {
 			setDIN(connection);
 		}
 		else {

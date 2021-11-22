@@ -3,7 +3,7 @@
 
 #define ERROR_CODE -1
 #define OK 0
-#define DEFAULT_MODE 0
+
 #define LINES 6
 #include <stm32f4xx_hal_gpio.h>
 
