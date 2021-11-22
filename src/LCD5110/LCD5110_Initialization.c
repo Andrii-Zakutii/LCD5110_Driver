@@ -46,21 +46,21 @@ int configureGPIO(LCD_Connection connection) {
 }
 
 void configureSPIClockingPins(LCD_Clocking clockingData) {
-	GPIO_InitTypeDef GPIO_CLK_Init;
-	GPIO_CLK_Init.Pin = clockingData.CLK;
-	GPIO_CLK_Init.Speed = GPIO_SPEED_MEDIUM;
-	GPIO_CLK_Init.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_CLK_Init.Pull = GPIO_NOPULL;
-	HAL_GPIO_Init(clockingData.Port, &GPIO_CLK_Init);
+	GPIO_InitTypeDef GPIO_CLK;
+	GPIO_CLK.Pin = clockingData.CLK;
+	GPIO_CLK.Speed = GPIO_SPEED_MEDIUM;
+	GPIO_CLK.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_CLK.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(clockingData.Port, &GPIO_CLK);
 }
 
 void configureSPITransmissionPins(LCD_SPI spi) {
-	GPIO_InitTypeDef GPIO_SPI_Init;
-	GPIO_SPI_Init.Pin = spi.CS | spi.DIN | spi.DC | spi.RST;
-	GPIO_SPI_Init.Speed = GPIO_SPEED_MEDIUM;
-	GPIO_SPI_Init.Pull= GPIO_NOPULL;
-	GPIO_SPI_Init.Mode = GPIO_MODE_OUTPUT_PP;
-	HAL_GPIO_Init(spi.Port,&GPIO_SPI_Init);
+	GPIO_InitTypeDef GPIO_SPI;
+	GPIO_SPI.Pin = spi.CS | spi.DIN | spi.DC | spi.RST;
+	GPIO_SPI.Speed = GPIO_SPEED_MEDIUM;
+	GPIO_SPI.Pull= GPIO_NOPULL;
+	GPIO_SPI.Mode = GPIO_MODE_OUTPUT_PP;
+	HAL_GPIO_Init(spi.Port,&GPIO_SPI);
 }
 
 int enableClocking(LCD_Connection connection){
